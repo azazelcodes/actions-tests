@@ -2,7 +2,7 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const before = process.env.GITHUB_EVENT_BEFORE;
+const before = process.env.GITHUB_EVENT_BEFORE || `${process.env.GITHUB_SHA}~1`;
 const after = process.env.GITHUB_SHA;
 
 const diff = execSync(`git diff --name-status ${before} ${after}`)
@@ -39,7 +39,7 @@ diff.forEach(line => {
     }
 
 
-    const index = `/quests/${issuer}.index.json`;
+    const index = `/quests/${issuer.toLowerCase()}.index.json`;
     let data = {};
     try {
         data = JSON.parse(fs.readFileSync(index, "utf8"));
