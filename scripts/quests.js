@@ -39,7 +39,7 @@ diff.forEach(line => {
     }
 
 
-    const index = path.join("quests", `${issuer}.index.json`);
+    const index = path.join("quests", `${issuer.toLowerCase()}.index.json`);
     let data = {};
     try {
         data = JSON.parse(fs.readFileSync(index, "utf8"));
