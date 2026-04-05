@@ -48,17 +48,17 @@ diff.forEach(line => {
     switch (status) {
         case "M": // modified
             if (oldName !== newName) {
-                delete data[sanitizeName(oldName)];
-                data[sanitizeName(newName)] = path.basename(file, ".json");
+                delete data[oldName];
+                data[newName] = path.basename(file, ".json");
             }
             break;
 
         case "D": // deleted
-            delete data[sanitizeName(oldName)];
+            delete data[oldName];
             break;
 
         case "A": // created
-            data[sanitizeName(newName)] = path.basename(file, ".json");
+            data[newName] = path.basename(file, ".json");
             break;
 
         default: // unknown
@@ -67,5 +67,3 @@ diff.forEach(line => {
 
     fs.writeFileSync(index, JSON.stringify(data, null, 2));
 });
-
-function sanitizeName(s) { return s.toLowerCase().replace(/[.?!]/g, "").replace(/\s+/g, "_") }
