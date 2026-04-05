@@ -1,0 +1,14 @@
+{
+    "name": "Sanitary Inspection",
+    "by": "Therapist",
+    "desc": "Hello. You're new here, I know who you are. Let's just get into it, I know what you're here for.",
+    "cond": {
+        "kill": {"zombie":5},
+        "mark": [0,0,0]
+    },
+    "rew": {
+        "rep": 0.01,
+        "items": ["5 Cooked Porkchops"],
+        "cur": 500
+    }
+}

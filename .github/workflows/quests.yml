@@ -1,0 +1,35 @@
+name: Index Quests
+
+on:
+  push:
+    paths:
+      - 'quests/**/*.json'
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Update quests index
+        run: node scripts/quests.js
+
+      - name: Commit updated indexes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add quests/*.index.json
+          
+          if ! git diff --cached --quiet; then
+            git commit -m "Update quests index JSON files"
+            git push
+          fi
