@@ -15,6 +15,7 @@ diff.forEach(line => {
     const [status, file] = line.split(/\s+/);
 
     if (!file.endsWith(".json")) return;
+    if (file.endsWith(".index.json")) return;
     if (!file.startsWith("quests/")) return;
 
     let oldName = null;
