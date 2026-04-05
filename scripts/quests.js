@@ -20,21 +20,19 @@ diff.forEach(line => {
     let oldName = null;
     let newName = null;
 
-    let issuer = null;
+    let issuer = file.split("/")[1]; // FIXME: very stupid, works for now
 
 
     if (status !== "A") { // not new creation
         try {
             const oldContent = execSync(`git show ${before}:${file}`).toString();
             oldName = JSON.parse(oldContent).name ?? null;
-            issuer = JSON.parse(oldContent).by ?? null;
         } catch {}
     }
     if (status !== "D") { // not deletion
         try {
             const newContent = fs.readFileSync(file, "utf8");
             newName = JSON.parse(newContent).name ?? null;
-            issuer = JSON.parse(newContent).by ?? null;
         } catch {}
     }
 
