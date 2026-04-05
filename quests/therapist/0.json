@@ -1,5 +1,5 @@
 {
-    "name": "Buy Bread",
+    "name": "Sanitary Inspection",
     "desc": "Hello. You're new here, I know who you are. Let's just get into it, I know what you're here for.",
     "cond": {
         "kill": {"zombie":5},
